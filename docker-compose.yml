@@ -1,0 +1,30 @@
+version: '3.8'
+services: 
+    nginx:
+        image: 'apollo-nginx'
+        build:
+            context: ./services/nginx
+            dockerfile: ./Dockerfile
+        container_name: apollo-nginx
+        depends_on:
+            - gateway
+            - userservice
+        hostname: nginx
+        ports:
+            - 80:80
+    gateway: 
+        container_name: apollo-gateway
+        build: 
+            context: .
+            dockerfile: ./deploy/gateway/Dockerfile
+        hostname: gateway
+    userservice:
+        container_name: apollo-userservice
+        build: 
+            context: .
+            dockerfile: ./deploy/user/Dockerfile
+        hostname: userservice
+        env_file: 
+            - ./.env
+        
+        
