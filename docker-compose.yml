@@ -50,6 +50,7 @@ services:
         hostname: bookingservice
         depends_on: 
             - bookingservice-db
+            - redis
         env_file: 
             - ./.env
     bookingservice-db:
@@ -58,5 +59,19 @@ services:
         restart: always
         env_file: 
            - ./.env
-        
+    redis:
+        image: 'redis'
+        container_name: redis
+        # ports: 
+        #     - "6379:6379"
+  
+    redisCommander:
+        image: 'rediscommander/redis-commander'
+        container_name: rediscommander
+        depends_on:
+          - redis
+        env_file: 
+         -  ./.env
+        ports:
+          - "8081:3000"    
         

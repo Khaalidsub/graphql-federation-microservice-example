@@ -1,6 +1,8 @@
 import { IUser } from '@apps/common';
 import { Module } from '@nestjs/common';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 import { GraphQLFederationModule } from '@nestjs/graphql';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Booking, BookingSchema } from './booking.entity';
 import { BookingResolver } from './booking.resolver';
@@ -25,6 +27,16 @@ import { BookingService } from './booking.service';
       },
     ),
     MongooseModule.forFeature([{ name: Booking.name, schema: BookingSchema }]),
+    EventEmitterModule.forRoot(),
+    ClientsModule.register([
+      {
+        name: 'BOOKING_SERVICE',
+        transport: Transport.REDIS,
+        options: {
+          url: 'redis://localhost:6379',
+        }
+      },
+    ]),
   ],
 
   providers: [BookingService,BookingResolver],

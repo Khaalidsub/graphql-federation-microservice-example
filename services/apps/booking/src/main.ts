@@ -14,6 +14,14 @@ async function bootstrap() {
       },
     },
   );
+  const microserviceRedis = app.connectMicroservice<MicroserviceOptions>(
+    {
+      transport: Transport.REDIS,
+      options: {
+          url:`redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
+      },
+    },
+  );
   await app.startAllMicroservicesAsync();
   await app.listen(3000);
 }
