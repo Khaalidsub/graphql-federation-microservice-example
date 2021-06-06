@@ -21,7 +21,6 @@ export class ChatResolver extends BaseResolver(Chat) {
     super(chatService);
   }
 
-
   @ResolveField(() => [IUser])
   users(@Parent() chat: Chat): any {
     return { __typename: 'User', ids: chat.users };

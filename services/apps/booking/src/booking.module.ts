@@ -34,11 +34,11 @@ import { BookingService } from './booking.service';
         transport: Transport.REDIS,
         options: {
           url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
-        }
+        },
       },
     ]),
   ],
 
-  providers: [BookingService,BookingResolver],
+  providers: [BookingService, BookingResolver],
 })
 export class BookingModule {}

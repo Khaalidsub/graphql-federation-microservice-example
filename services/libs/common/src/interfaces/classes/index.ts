@@ -1,2 +1,2 @@
-export * from './IUser'
-export * from './IBook'
+export * from './IUser';
+export * from './IBook';

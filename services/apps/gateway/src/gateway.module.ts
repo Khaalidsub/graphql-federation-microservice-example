@@ -6,10 +6,10 @@ import { GraphQLGatewayModule } from '@nestjs/graphql';
       server: {
         // ... Apollo server options
         cors: true,
-        playground:true
+        playground: true,
       },
       gateway: {
-        serviceHealthCheck:true,
+        serviceHealthCheck: true,
         serviceList: [
           { name: 'users', url: `http://userservice:3000/graphql` },
           { name: 'booking', url: `http://bookingservice:3000/graphql` },

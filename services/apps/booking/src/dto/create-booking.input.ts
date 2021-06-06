@@ -1,11 +1,11 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateBookingInput  {
-    @Field()
-    student: string;
-    @Field()
-    tutor: string;
-    @Field(()=>Date)
-    date: Date;
+export class CreateBookingInput {
+  @Field()
+  student: string;
+  @Field()
+  tutor: string;
+  @Field(() => Date)
+  date: Date;
 }

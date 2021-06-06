@@ -1,3 +1,3 @@
-import { IBaseService } from "./IBase";
+import { IBaseService } from './IBase';
 
-export interface IChatService extends IBaseService{}
+export type IChatService = IBaseService;
