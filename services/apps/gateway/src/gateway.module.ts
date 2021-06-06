@@ -10,9 +10,9 @@ import { GraphQLGatewayModule } from '@nestjs/graphql';
       },
       gateway: {
         serviceHealthCheck:true,
-        debug:true,
         serviceList: [
-          { name: 'users', url: 'http://localhost/user-service/graphql' },
+          { name: 'users', url: `http://userservice:3000/graphql` },
+          { name: 'booking', url: `http://bookingservice:3000/graphql` },
         ],
       },
     }),

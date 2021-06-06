@@ -12,21 +12,21 @@ export class UsersService implements IUsersService{
       return new this.userModel(data).save();
     }
     findOne(query: any) {
-        throw new Error("Method not implemented.");
+        return this.userModel.findOne(query);
     }
     findById(id: string) {
-        throw new Error("Method not implemented.");
+        return this.userModel.findById(id);;
     }
     findAll() {
-        throw new Error("Method not implemented.");
+     return this.userModel.find()
     }
     findAllByQuery(query: any) {
-        throw new Error("Method not implemented.");
+        return this.userModel.find(query)
     }
-    updateById(id: any, query: any) {
-        throw new Error("Method not implemented.");
+    updateById(id: string, query: any) {
+        return this.userModel.findByIdAndUpdate(id,query,{new:true,useFindAndModify:true})
     }
-    deleteById(id: any) {
-        throw new Error("Method not implemented.");
+    deleteById(id: string) {
+       return this.userModel.findByIdAndDelete(id)
     }
 }

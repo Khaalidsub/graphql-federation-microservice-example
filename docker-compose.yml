@@ -9,6 +9,7 @@ services:
         depends_on:
             - gateway
             - userservice
+            - bookingservice
         hostname: nginx
         ports:
             - 80:80
@@ -17,6 +18,11 @@ services:
         build: 
             context: .
             dockerfile: ./deploy/gateway/Dockerfile
+        ports: 
+            - 3000:3000
+        depends_on:
+            - userservice
+            - bookingservice
         hostname: gateway
     userservice:
         container_name: apollo-userservice
@@ -24,7 +30,33 @@ services:
             context: .
             dockerfile: ./deploy/user/Dockerfile
         hostname: userservice
+        depends_on: 
+            - userservice-db
+        ports: 
+            - 3001:3000
         env_file: 
             - ./.env
+    userservice-db:
+        image: 'mongo:4.4'
+        container_name: userservice-db
+        restart: always
+        env_file: 
+           - ./.env
+    bookingservice:
+        container_name: apollo-bookingservice
+        build: 
+            context: .
+            dockerfile: ./deploy/booking/Dockerfile
+        hostname: bookingservice
+        depends_on: 
+            - bookingservice-db
+        env_file: 
+            - ./.env
+    bookingservice-db:
+        image: 'mongo:4.4'
+        container_name: bookingservice-db
+        restart: always
+        env_file: 
+           - ./.env
         
         

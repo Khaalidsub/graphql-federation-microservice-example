@@ -8,10 +8,10 @@ import { UsersService } from './user.service';
 @Module({
   imports: [
     GraphQLFederationModule.forRoot({
-      autoSchemaFile: true,
+      autoSchemaFile: true
     }),
     MongooseModule.forRoot(
-      `mongodb://${process.env.DB_MONGODB_USER}:${process.env.DB_MONGODB_PASS}@${process.env.DB_MONGODB_HOST}:${process.env.DB_MONGODB_PORT}/${process.env.DB_MONGODB_USER_NAME}?authSource=admin`,
+      `mongodb://${process.env.DB_MONGODB_USER}:${process.env.DB_MONGODB_PASS}@${process.env.DB_MONGODB_USER_HOST}:${process.env.DB_MONGODB_PORT}/${process.env.DB_MONGODB_USER_NAME}?authSource=admin`,
       {
         useFindAndModify: false,
         connectionFactory: (connection) => {
