@@ -13,6 +13,7 @@ import { GraphQLGatewayModule } from '@nestjs/graphql';
         serviceList: [
           { name: 'users', url: `http://userservice:3000/graphql` },
           { name: 'booking', url: `http://bookingservice:3000/graphql` },
+          { name: 'chats', url: `http://chatservice:3000/graphql` },
         ],
       },
     }),

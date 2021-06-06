@@ -31,6 +31,7 @@
     "@nestjs/microservices": "^7.6.17",
     "@nestjs/mongoose": "^7.2.4",
     "@nestjs/platform-express": "^7.6.15",
+    "@types/rethinkdb": "^2.3.16",
     "apollo-server-express": "^2.25.0",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.5",
@@ -38,6 +39,7 @@
     "mongoose": "^5.12.13",
     "redis": "^3.1.2",
     "reflect-metadata": "^0.1.13",
+    "rethinkdb": "^2.4.2",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.6"
   },

@@ -33,7 +33,7 @@ import { BookingService } from './booking.service';
         name: 'BOOKING_SERVICE',
         transport: Transport.REDIS,
         options: {
-          url: 'redis://localhost:6379',
+          url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
         }
       },
     ]),

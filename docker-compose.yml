@@ -10,10 +10,12 @@ services:
             - gateway
             - userservice
             - bookingservice
+            - chatservice
         hostname: nginx
         ports:
             - 80:80
     gateway: 
+        image: gateway
         container_name: apollo-gateway
         build: 
             context: .
@@ -23,8 +25,10 @@ services:
         depends_on:
             - userservice
             - bookingservice
+            - chatservice
         hostname: gateway
     userservice:
+        image: user-service
         container_name: apollo-userservice
         build: 
             context: .
@@ -43,6 +47,7 @@ services:
         env_file: 
            - ./.env
     bookingservice:
+        image: booking-service
         container_name: apollo-bookingservice
         build: 
             context: .
@@ -59,15 +64,35 @@ services:
         restart: always
         env_file: 
            - ./.env
+    chatservice:
+        image: chat-service
+        container_name: apollo-chatservice
+        build: 
+            context: .
+            dockerfile: ./deploy/chat/Dockerfile
+        hostname: chatservice
+        depends_on: 
+            - chatservice-db
+            - redis
+        env_file: 
+            - ./.env
+    chatservice-db:
+        image: 'rethinkdb:2.4.1'
+        container_name: chatservice-db
+        restart: always
+        ports:
+          - 8080:8080   
+        env_file: 
+           - ./.env
     redis:
         image: 'redis'
-        container_name: redis
+        container_name: apollo-redis
         # ports: 
         #     - "6379:6379"
   
     redisCommander:
         image: 'rediscommander/redis-commander'
-        container_name: rediscommander
+        container_name: apollo-rediscommander
         depends_on:
           - redis
         env_file: 
