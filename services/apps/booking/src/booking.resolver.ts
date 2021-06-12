@@ -37,10 +37,10 @@ export class BookingResolver extends BaseResolver(Booking) {
 
   @ResolveField(() => IUser)
   student(@Parent() booking: Booking): any {
-    return { __typename: 'User', id: booking.student };
+    return { __typename: 'IUser', id: booking.student };
   }
   @ResolveField(() => IUser)
   tutor(@Parent() booking: Booking): any {
-    return { __typename: 'User', id: booking.tutor };
+    return { __typename: 'IUser', id: booking.tutor };
   }
 }
